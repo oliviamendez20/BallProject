@@ -36,18 +36,25 @@ public class Ball {
         b.fillOval(x,y,size,size);
     }
 
-    public void moveRight(){
+    public void moveRight()
+    {
         x += xSpeed;
+    }
+
+    public void moveLeft()
+    {
+        x -= xSpeed;
     }
 
     public void moveBall(JPanel bPanel){
         x += xSpeed;
-        if(x >= bPanel.getWidth() || x <= 0){
+        if(x + size >= bPanel.getWidth() || x <= 0){
             xSpeed *= -1;
         }
         y += ySpeed;
 
-        if(y>= bPanel.getHeight() || y<=0){
+
+        if(y + size >= bPanel.getHeight() || y<=0){
             ySpeed *= -1;
         }
 

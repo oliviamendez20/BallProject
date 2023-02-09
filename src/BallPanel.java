@@ -20,10 +20,14 @@ public class BallPanel extends JPanel{
 
                 System.out.println(e.getKeyCode());
                 int k = e.getKeyCode();
-                if(k == 39)
-                {
+                if(k >= 39) {
                     ballOne.moveRight();
                 }
+                if(k <= 39)
+                {
+                    ballOne.moveLeft();
+                }
+
 
 
             }
