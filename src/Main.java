@@ -8,7 +8,6 @@ public class Main{
         BallPanel bPanel = new BallPanel();
         //DrawingPanel myPanel = new DrawingPanel();
 
-
         myFrame.add(bPanel);
         myFrame.setVisible(true);
     }

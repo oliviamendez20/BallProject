@@ -3,12 +3,35 @@ import java.awt.event.KeyListener;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 public class BallPanel extends JPanel{
     Ball[] ballArray = new Ball[20];
-    Ball ballOne = new Ball(50,50,100);
+    ArrayList<Ball> blah = new ArrayList<Ball>();
+    Ball ballOne = new Ball(50,50,50);
+
+JButton button = new JButton("Push");
+  
    // Ball mine;
     public BallPanel(){
         setFocusable(true);
+
+
+
+
+      
+button.addActionListener(new ActionListener() {
+
+  @Override
+public void actionPerformed(ActionEvent e) {
+
+blah.add(new Ball((int)(Math.random()*400),(int)(Math.random()*400),(int)(Math.random()*50)));
+  
+}
+  
+});
+      
+  this.add(button);
+      
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -20,16 +43,24 @@ public class BallPanel extends JPanel{
 
                 System.out.println(e.getKeyCode());
                 int k = e.getKeyCode();
-                if(k >= 39) {
+                if(k == 39)
+                {
                     ballOne.moveRight();
                 }
-                if(k <= 39)
+                if(k == 37)
                 {
-                    ballOne.moveLeft();
+                ballOne.moveLeft();
+                }
+                if(k == 40)
+                {
+                  ballOne.moveUp();
+                }
+                if(k == 38)
+                {
+                  ballOne.moveDown();
                 }
 
-
-
+            
             }
 
             @Override
@@ -37,7 +68,7 @@ public class BallPanel extends JPanel{
 
             }
         });
-        setBackground(Color.blue);
+        setBackground(Color.black);
         //mine = new Ball(30,50,10);
         for(int i = 0; i < 20; i ++) {
             ballArray[i] = new Ball((int)(Math.random()*400),(int)(Math.random()*400),(int)(Math.random()*50));
@@ -50,14 +81,44 @@ public class BallPanel extends JPanel{
 
         super.paintComponent(g);
         //mine.drawBall(g);
+      
         ballOne.drawBall(g);
+      //System.out.println(ballOne.getY());
 
-        for(int i = 0; i < ballArray.length; i++){
+      if(ballOne.getX() < 0)
+      {
+        ballOne.setX(500);
+      }
 
-            ballArray[i].drawBall(g);
-            ballArray[i].moveBall(this);
+      if (ballOne.getX() > 500)
+      {
+        ballOne.setX(0);
+      }
+
+      if(ballOne.getY() < 0)
+      {
+        ballOne.setY(0);
+      }
+      if(ballOne.getY() > 500)
+      {
+        ballOne.setY(500);
+      }
 
 
+        // for(int i = 0; i < ballArray.length; i++){
+
+        //     ballArray[i].drawBall(g);
+          
+        //     ballArray[i].moveBall(this);
+
+          
+
+        // }
+
+      for(int i= 0; i < blah.size(); i++)
+        {
+          blah.get(i).drawBall(g);
+          blah.get(i).moveBall(this);
         }
 
         //g.fillOval(10,20,10,10);
